@@ -1,0 +1,53 @@
+
+<app-header></app-header>
+
+<!-- <div class="u-bread-cart">
+	<div class="container">
+		<div class="row">
+			<span>GIO HANG</span>
+		</div>
+	</div>
+</div>
+<div class="unica-order-cart">
+	<div class="container">
+		<div class="row">
+			<div *ngIf="cartItems.length === 0" class="alert alert-info">Your Cart is Empty.</div>
+			<div class="u-box-cart2" *ngIf="cartItems.length > 0">
+				<app-shopping-item [cartItems]="item"></app-shopping-item>
+			</div>
+		</div>
+	</div>
+</div> -->
+<div class="container">
+	<div class="row">
+		<div *ngIf="cartItems.length === 0" class="alert alert-info">Your Cart is Empty.</div>
+
+		<div class="u-box-cart2" *ngIf="cartItems.length > 0">
+			<div class="card-body table-responsive">
+				<table class="table table-hover">
+					<thead class="thead-color">
+						<tr style="font-size: 20px; ">GIỎ HÀNG</tr>
+				<!-- <tr>
+					<th></th>
+					<th>Product</th>
+					<th>Unit Price</th>
+					<th style="text-align: center;">Quantity</th>
+					<th class="align-right">Total Price</th>
+				</tr> -->
+			    	</thead>
+					<tbody>
+						<tr class="table-data-animation" *ngFor="let item of cartItems">
+							<app-shopping-item [cartItems]="item"></app-shopping-item>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div>
+			<strong>Tổng giá:</strong>{{ cartTotal | currency:'VND' }}
+		</div>
+		<div>
+			<button type="button" class="btn btn-primary">Thanh toán</button>
+		</div>
+	</div>
+</div>

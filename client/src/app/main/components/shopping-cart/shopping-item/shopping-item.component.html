@@ -1,0 +1,18 @@
+<td  style="width: 60px;"><img style="width: 200px;" [src]="cartItems.imageUrl" class="avatar"></td>
+<td>{{ cartItems.productName }}</td>
+<td>{{ cartItems.price | slice : '1' |currency:'INR':'symbol' }}</td>
+<td >
+{{ cartItems.qty }}
+</td>
+<td class="align-right">{{ (cartItems.qty * cartItems.price) | currency:'VND' }}</td>
+<td><i class="fa fa-times del_cart"></i></td> -->
+<!-- <div class="u-cart-course">
+	<div class="img-cart-course"><img style="" [src]="cartItems.imageUrl" class="avatar"></div>
+	<div class="title-cart-course">
+		<p>{{ cartItems.productName }}</p>
+	</div>			
+	<div class="price-cart cart-price-sub">
+		<p>{{ cartItems.price | currency:'INR':'symbol' }}</p>
+	</div>
+	<div class="remove-course"><i class="fa fa-times del_cart"></i></div>	
+</div> -->

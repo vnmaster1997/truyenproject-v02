@@ -1,0 +1,32 @@
+<div class="card card-fixed-style cc" style="border-radius: 10px;">
+    <img style="border-radius: 10px 10px 0 0;" [src]="productCard.imageUrl" class="card-img-top item">
+    <div class="card-body card-body-text">
+        <h6 class="card-name">{{ productCard.name }}</h6>
+        <p class="card-author">{{ productCard.author }}</p>
+        <p class="card-title">{{ productCard.description }}</p>
+        <p class="card-text" style="font-size: 12px;">
+            {{ productCard.price | currency:'VND':'symbol' }}</p>
+    </div>
+    <div>
+        <a *ngIf="!addedToCard"class="btn" (click)="handleAddToCart()">Add to&nbsp;<i class='fa fa-cart-plus'></i></a>
+        <a *ngIf="addedToCard" class="btn" (click)="handleMoveFromCart()">Remove from&nbsp;<i class='fa fa-cart-plus'></i></a>
+    </div>
+    <!-- <div class="card-footer">
+        <div class="row" style="display: flex; justify-content:space-between;margin: 0px; padding: 0px;">
+            <a class="btn" *ngIf="getQuantity() === 0; else updateQuantity" (click)="addToCart()">Add to&nbsp;<i
+                        class='fa fa-cart-plus'></i></a>
+    
+            <ng-template #updateQuantity>
+                <div (click)="removeFromCart()">
+                    <button class="btn"><i class='fa fa-minus'></i></button>
+                </div>
+                <div style="align-self: center;">
+                    {{ getQuantity() }} in Cart
+                </div>
+                <div (click)="addToCart()">
+                    <button class="btn"><i class='fa fa-plus'></i></button>
+                </div>
+            </ng-template>
+        </div>
+    </div> -->
+</div>
