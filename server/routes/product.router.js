@@ -56,8 +56,8 @@ router.post('/create'/*, upload.single('imageProduct')*/, async (req, res) => {
 			imageUrl: imageUrl
 		});
 		await product.save();
-		var path = req.file.path;
-		res.send(path)
+		/*var path = req.file.path;
+		res.send(path)*/
 	} catch(e) {
 		console.log(e)
 	}
