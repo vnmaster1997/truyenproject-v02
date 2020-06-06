@@ -1,5 +1,6 @@
-import { SignUpComponent } from '../../signup/signup.component';
-import { LogInComponent } from '../../login/login.component';
+import { SignUpComponent } from '../../user/signup/signup.component';
+import { LogInComponent } from '../../user/login/login.component';
+import { UserComponent } from '../../user/user.component';
 import { ProductComponent } from '../../components/product/product.component';
 import { ProductListComponent } from '../../components/product/product-list/product-list.component';
 import { ProductFilterComponent } from '../../components/product/product-filter/product-filter.component';
@@ -10,6 +11,7 @@ import { ShoppingItemComponent } from '../../components/shopping-cart/shopping-i
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { BodyComponent } from '../../components/body/body.component';
+import { HomeComponent } from '../../components/home/home.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { UserprofileComponent } from '../../components/userprofile/userprofile.component';
 
@@ -22,7 +24,7 @@ import { HomeLayoutRoutingModule } from './home-layout-routing.module';
 
 
 @NgModule({
-  declarations: [LogInComponent, SignUpComponent,HeaderComponent,BodyComponent,FooterComponent,UserprofileComponent,
+  declarations: [LogInComponent,UserComponent, SignUpComponent,HeaderComponent,BodyComponent,HomeComponent,FooterComponent,UserprofileComponent,
   ProductComponent,ProductListComponent,ProductCardComponent,ProductFilterComponent,ShoppingCartComponent,ShoppingItemComponent],
   imports: [
     CommonModule,

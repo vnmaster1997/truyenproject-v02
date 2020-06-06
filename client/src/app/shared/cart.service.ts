@@ -3,12 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CartItem } from '../main/models/cart-item';
-import { cartUrl } from '../main/config/api';
 import { Product } from '../main/models/product.model';
+import { environment } from '../../environments/environment';
+
+
+const cartUrl = `${environment.apiBaseUrl}/cart`;
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CartService {
 
   constructor(private http: HttpClient) { }
@@ -48,7 +53,4 @@ export class CartService {
     return this.http.delete(cartUrl + '/' + product.id );
   }
 
-  /*getListCarts() {
-    return this.http.get('/cart/listcarts'); 
-  }*/
 }

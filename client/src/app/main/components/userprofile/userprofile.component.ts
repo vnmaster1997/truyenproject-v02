@@ -1,62 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../shared/user.service';
-import { AuthService } from '../../../shared/auth.service';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirebaseUserModel } from '../../models/user.model';
+/*import { UserfbService } from '../../../shared/userfb.service';*/
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'page-user',
-  templateUrl: 'userprofile.component.html',
-  styleUrls: ['userprofile.component.css']
+  selector: 'app-userprofile',
+  templateUrl: './userprofile.component.html',
+  styleUrls: ['./userprofile.component.css']
 })
-export class UserprofileComponent implements OnInit{
+export class UserprofileComponent implements OnInit {
+  public userDetails;
+  public currentUser : any = {};
+  constructor(private userService: UserService, /*private userfbService: UserfbService,*/ private router: Router) { }
 
-  user: FirebaseUserModel = new FirebaseUserModel();
-  profileForm: FormGroup;
-
-  constructor(
-    public userService: UserService,
-    public authService: AuthService,
-    private route: ActivatedRoute,
-    private location : Location,
-    private fb: FormBuilder
-  ) {
-
-  }
-
-  ngOnInit(): void {
-    this.route.data.subscribe(routeData => {
-      let data = routeData['data'];
-      if (data) {
-        this.user = data;
-        this.createForm(this.user.name);
+  ngOnInit() {
+    
+      this.userService.getUserProfile().subscribe(
+      res => {
+        this.userDetails = res['user'];
+      },
+      err => { 
+        console.log(err);
+        
       }
-    })
+    );
+    /*this.userfbService.getCurrentUser().then(profile => this.currentUser = profile)
+        .catch(() => this.currentUser = {});*/
   }
 
-  createForm(name) {
-    this.profileForm = this.fb.group({
-      name: [name, Validators.required ]
-    });
+  onLogout(){
+    this.userService.deleteToken();
+    this.router.navigate(['/body']);
   }
 
-  save(value){
-    this.userService.updateCurrentUser(value)
-    .then(res => {
-      console.log(res);
-    }, err => console.log(err))
-  }
-
-  logout(){
-    this.authService.doLogout()
-    .then((res) => {
-      this.location.back();
-    }, (error) => {
-      console.log("Logout error", error);
-    });
-  }
 }
-
-

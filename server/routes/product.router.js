@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/product.js');
+const Product = require('../models/product.model');
 const fs = require('fs')
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })

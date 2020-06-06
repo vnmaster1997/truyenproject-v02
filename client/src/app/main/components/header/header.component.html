@@ -1,29 +1,32 @@
 <nav class="navbar-menu navbar-menu__sub">
 	<div class="container">
 		<div class="navbar-holder d-flex align-items-start">
-			<a href="/body" class="navbar-logo mr-auto d-none d-md-block">
+			<a href="/home" class="navbar-logo mr-auto d-none d-md-block">
 				<img class="img-fluid js-lazy-image js-has-webp lazy-image-loaded" alt="Apollo Tiếng Anh trẻ em" src="../../../assets/img/home/logo.png"  style="height: 150px; width: 150px;">
 			</a>
 			<div class="navbar-list d-flex flex-column ml-md-6">
 				
 				<div class="navbar-list-top d-flex flex-wrap align-items-center ml-md-auto my-md-auto">
-					<a href="" style="margin-left: 400px;" class="nav-link" routerLink="/shoppingCart"><i class='fa fa-shopping-cart'></i>&nbsp;&nbsp;Shopping Cart&nbsp;&nbsp;</a>
+					<a href="" style="margin-left: 300px;" class="nav-link" routerLink="/shoppingCart"><i class='fa fa-shopping-cart'></i>&nbsp;&nbsp;Shopping Cart&nbsp;&nbsp;</a>
 					<a href="tel:18006655" class="ml-md-auto mr-md-4" style="">
 						<i class="fa fa-phone mr-1" aria-hidden="true"></i> 1800-6655
 					</a>
 					<a href="" class="has-border mr-md-4">
 						<i class="fa fa-map-marker mr-1" aria-hidden="true"></i> Tìm trung tâm
 					</a>
-					<a routerLink="/login" class="has-border">
+					<a  *ngIf="!userDetails" routerLink="/login" class="has-border">
 						Login
 					</a>
-					<!-- <div class="" style="">
-						<img class="card-img-top image" [src]="user.image" *ngIf="user.image" alt="User image">
-						<img class="card-img-top image" src="https://via.placeholder.com/400x300" *ngIf="!user.image" alt="User image">
-						<p class="has-border">{{user.name}}</p>
-						<a (click)="logout()" class="navbar-text navbar-right navbar-link">Logout</a>
+					<div class="has-border list-bottom-item dropdown" *ngIf="userDetails">
+						<img src="../../../../assets/img/user.png" alt="" class="avatar">{{userDetails.fullName.split(' ')[0]}} {{userDetails.fullName.split(' ')[1]}}
+						<div class="dropdown-content">
+							<a href="" class="d-block" (click)="onLogout()">Logout</a>
+						</div>
 					</div>
-									 -->
+					<!-- <div *ngIf="userDetails">
+					    <p  style="margin: 5px 10px 0px 0px; ">{{userDetails.fullName.split(' ')[0]}} {{userDetails.fullName.split(' ')[1]}}</p>
+						<a href="" class="has-border mr-md-4" (click)="onLogout()" >Logout</a>	
+					</div> -->
 				</div>
 				<div class="navbar-list-bottom my-md-auto d-flex flex-wrap justify-content-between">
 					<a class="list-bottom-item" href="#" style="text-decoration: none;">AGLS là gì</a>

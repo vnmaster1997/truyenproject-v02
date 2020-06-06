@@ -1,40 +1,72 @@
-import { Injectable } from "@angular/core";
-import 'rxjs/add/operator/toPromise';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-@Injectable()
+import { environment } from '../../environments/environment';
+import { User } from './user.model';
+
+
+ /*const BASEURL = 'http://localhost:3000/api/resetpassword';*/
+
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
+  selectedUser: User = {
+    fullName: '',
+    email: '',
+    password: ''
+  };
 
-  constructor(
-   public db: AngularFirestore,
-   public afAuth: AngularFireAuth
- ){
- }
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
+  constructor(private http: HttpClient) { }
 
-  getCurrentUser(){
-    return new Promise<any>((resolve, reject) => {
-      var user = firebase.auth().onAuthStateChanged(function(user){
-        if (user) {
-          resolve(user);
-        } else {
-          reject('No user logged in');
-        }
-      })
-    })
+  //HttpMethods
+
+  postUser(user: User){
+    return this.http.post(environment.apiUrl+'/register',user,this.noAuthHeader);
   }
 
-  updateCurrentUser(value){
-    return new Promise<any>((resolve, reject) => {
-      var user = firebase.auth().currentUser;
-      user.updateProfile({
-        displayName: value.name,
-        photoURL: user.photoURL
-      }).then(res => {
-        resolve(res);
-      }, err => reject(err))
-    })
+  login(authCredentials) {
+    return this.http.post(environment.apiUrl + '/authenticate', authCredentials,this.noAuthHeader);
+  }
+
+  getUserProfile() {
+    return this.http.get(environment.apiUrl + '/userProfile');
+  }
+
+
+  //Helper Methods
+
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  deleteToken() {
+    localStorage.removeItem('token');
+  }
+
+  getUserPayload() {
+    var token = this.getToken();
+    if (token) {
+      var userPayload = atob(token.split('.')[1]);
+      return JSON.parse(userPayload);
+    }
+    else
+      return null;
+  }
+
+  isLoggedIn() {
+    var userPayload = this.getUserPayload();
+    if (userPayload)
+      return userPayload.exp > Date.now() / 1000;
+    else
+      return false;
   }
 }
+

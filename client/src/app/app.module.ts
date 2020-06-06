@@ -14,14 +14,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 import { UserService } from './shared/user.service';
-import { AuthService } from './shared/auth.service';
+/*import { UserfbService } from './shared/userfb.service';*/
 import { ProductService } from './shared/product.service';
 import { MessengerService } from './shared/messenger.service';
 
 
-import { UserResolver } from './main/components/userprofile/user.resolver';
 import { AuthGuard } from './auth/auth.guard';
-/*import { AuthInterceptor } from './auth/auth.interceptor';*/
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './admin/components/components.module';
@@ -29,9 +28,11 @@ import { ComponentsModule } from './admin/components/components.module';
 import { AppComponent } from './app.component';
 
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { LogInComponent } from './main/login/login.component';
-import { SignUpComponent } from './main/signup/signup.component';
+import { LogInComponent } from './main/user/login/login.component';
+import { SignUpComponent } from './main/user/signup/signup.component';
+import { UserComponent } from './main/user/user.component';
 import { ProductComponent } from './main/components/product/product.component';
+import { HomeComponent } from './main/components/home/home.component';
 import { ProductListComponent } from './main/components/product/product-list/product-list.component';
 import { ProductFilterComponent } from './main/components/product/product-filter/product-filter.component';
 import { ProductCardComponent } from './main/components/product/product-list/product-card/product-card.component';
@@ -49,7 +50,16 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './admin/layouts/admin-layout/admin-layout.component';
-
+ 
+ /*export function getAuthHttp(http: Http) {
+  return new AuthHttp(new AuthConfig({
+    headerName: 'x-auth-token',
+    noTokenScheme: true,
+    noJwtError: true,
+    globalHeaders: [{'Accept': 'application/json'}],
+    tokenGetter: (() => localStorage.getItem('id_token')),
+  }), http);
+}*/
 
 @NgModule({
   imports: [
@@ -61,14 +71,7 @@ import { AdminLayoutComponent } from './admin/layouts/admin-layout/admin-layout.
     HttpClientModule,
     ComponentsModule,
     RouterModule,
-    AppRoutingModule,
-    /*AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    }),*/
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-    /*AngularFireAuth*/
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
@@ -77,11 +80,16 @@ import { AdminLayoutComponent } from './admin/layouts/admin-layout/admin-layout.
     /*SignUpComponent,
     LogInComponent*/
   ],
-  providers: [/*{
+  providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }*/AuthGuard,AngularFireAuth,AuthService,UserService,ProductService,MessengerService,UserResolver],
+  },AuthGuard,UserService,/*UserfbService,*/ProductService,MessengerService/*,
+  {
+      provide: AuthHttp,
+      useFactory: getAuthHttp,
+      deps: [Http]
+    }*/],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

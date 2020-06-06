@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Product } from '../main/models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { productsUrl } from '../main/config/api';
 import { environment } from '../../environments/environment';
 
 @Injectable({

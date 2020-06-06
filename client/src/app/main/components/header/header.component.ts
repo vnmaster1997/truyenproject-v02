@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../shared/user.service';
-import { AuthService } from '../../../shared/auth.service';
+/*import { UserfbService } from '../../../shared/userfb.service';*/
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseUserModel } from '../../models/user.model';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -12,41 +13,27 @@ import { FirebaseUserModel } from '../../models/user.model';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-/*user: FirebaseUserModel = new FirebaseUserModel();
- profileForm: FormGroup;*/
-
+public userDetails;
+public currentUser : any = {};
   
-  constructor(/*public userService: UserService,
-    public authService: AuthService,
-    private route: ActivatedRoute,
-    private location : Location,
-    private fb: FormBuilder*/) { }
+  constructor(private userService: UserService, /*private userfbService: UserfbService,*/ private router: Router) { }
 
   ngOnInit() {
-    /*this.route.data.subscribe(routeData => {
-      let data = routeData['data'];
-      if (data) {
-        this.user = data;
-        this.createForm(this.user.name);
+    this.userService.getUserProfile().subscribe(
+      res => {
+        this.userDetails = res['user'];
+      },
+      err => { 
+        console.log(err);
+        
       }
-    })*/
-      
+    );
+    /*this.userfbService.getCurrentUser().then(profile => this.currentUser = profile)
+        .catch(() => this.currentUser = {});*/
+}
+onLogout(){
+    this.userService.deleteToken();
+    this.router.navigate(['/body']);
   }
-  /*createForm(name) {
-    this.profileForm = this.fb.group({
-      name: [name, Validators.required ]
-    });
-  }
-
-  logout(){
-    this.authService.doLogout()
-    .then((res) => {
-      this.location.back();
-    }, (error) => {
-      console.log("Logout error", error);
-    });
-  }
-*/
-  
 }
 
