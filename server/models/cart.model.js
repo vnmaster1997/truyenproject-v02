@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const Product = require('./product.model');
+
 var cartSchema = new mongoose.Schema({
     userId: String,
    total: Number,
    quantity: Number,
-   products: [Product]
+   products: Array
 });
 
-module.exports =mongoose.model('cart', cartSchema);
+module.exports = mongoose.model('Cart', cartSchema);

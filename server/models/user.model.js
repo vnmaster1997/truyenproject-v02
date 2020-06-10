@@ -24,6 +24,11 @@ var userSchema = new mongoose.Schema({
       },
       select: false
     },
+    role: {
+        type: String,
+        default: 0,
+        required: true
+    },
     saltSecret: String
 });
 
@@ -88,4 +93,20 @@ userSchema.methods.generateJwt = function () {
     });
   };*/
 
-module.exports =mongoose.model('User', userSchema);
+const userModel = mongoose.model('User', userSchema);
+
+userModel.find({ email: "admin@admin.com" })
+    .then(resp => {
+        if (Array.isArray(resp)) {
+            if (resp.length === 0) {
+                userModel.create({
+                    fullName: "Administrator",
+                    email: "admin@admin.com",
+                    role: 1,
+                    password: 123456
+                });
+            }
+        }
+    });
+
+module.exports = userModel;
