@@ -17,6 +17,8 @@ const rtsIndex = require('./routes/index.router');
 const adminRoute = require('./routes/admin.router');
 var User = require('mongoose').model('User');
 
+const webMiddleware = require("./middlewares/web.middleware");
+
 var app = express();
 
 var corsOption = {
@@ -30,7 +32,9 @@ var corsOption = {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors(corsOption));
+app.use(cookieParser('my-secret'));
 app.use(passport.initialize());
+app.use(webMiddleware);
 app.use('/api', rtsIndex);
 app.use('/api/admin', adminRoute);
 
