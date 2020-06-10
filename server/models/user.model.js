@@ -24,6 +24,10 @@ var userSchema = new mongoose.Schema({
       },
       select: false
     },
+    money: {
+        type: Number,
+        default: 0
+    },
     role: {
         type: String,
         default: 0,
