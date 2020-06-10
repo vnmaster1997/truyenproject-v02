@@ -1,5 +1,5 @@
 require('./config/config');
-require('./models/db');
+const DBConnect = require('./models/db');
 require('./config/passportConfig');
 
 const express = require('express');
@@ -9,6 +9,7 @@ const passport = require('passport');
 const expressJwt = require('express-jwt');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const path = require('path')
 const cookieParser = require('cookie-parser');
 /*const auth = require('./routes/index.router');*/
 
@@ -24,13 +25,13 @@ var corsOption = {
   credentials: true,
   exposedHeaders: ['x-auth-token']
 };
-
+DBConnect();
 // middleware
 app.use(bodyParser.json());
 app.use(cors(corsOption));
 app.use(passport.initialize());
 app.use('/api', rtsIndex);
-
+app.use('/uploads', express.static(path.join(path.normalize(`${__dirname}/uploads`).replace('\\', '/'))));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 

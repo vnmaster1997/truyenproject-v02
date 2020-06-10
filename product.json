@@ -1,0 +1,82 @@
+[{
+  "_id": {
+    "$oid": "5ee0810933a2204b3420a3bb"
+  },
+  "name": "Luyện thi IELTS online: listening, speaking, reading, writing",
+  "author": "Bùi Đức Tiến",
+  "description": "Rèn luyện 4 kĩ năng, kèm theo giảng giải chi tiết về cấu trúc đề thi, nhưng lưu ý khi làm bài sẽ giúp bạn tự tin đạt 5 - 5,5 điểm IELTS.",
+  "imageUrl": "http://localhost:3000/uploads/1591771401718-khoa-hoc-luyen-thi-ielts-online_m_1555574391.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee0813033a2204b3420a3bc"
+  },
+  "__v": 0,
+  "name": "Tiếng Anh giao tiếp căn bản cho người Mất gốc",
+  "author": "Victoria Dương",
+  "description": "Những chủ đề giao tiếp đơn giản, gần gũi, là cầu nối, nền móng cho tiếng Anh của bạn bay cao, bay xa",
+  "imageUrl": "http://localhost:3000/uploads/1591773812619-anh-van-giao-tiep-cho-nguoi-hoan-toan-mat-goc_m_1555555777.jpg"
+},{
+  "_id": {
+    "$oid": "5ee0815133a2204b3420a3bd"
+  },
+  "name": "Anh văn giao tiếp cho người hoàn toàn mất gốc",
+  "author": "Ruby Thảo Trần",
+  "description": "Khơi dậy niềm đam mê tiếng Anh, tự tin giao tiếp tiếng Anh như người bản xứ, mở ra cơ hội học tập và làm việc tại các công ty đa quốc gia",
+  "imageUrl": "http://localhost:3000/uploads/1591771473472-anh-van-giao-tiep-cho-nguoi-hoan-toan-mat-goc_m_1555555777.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee0817033a2204b3420a3be"
+  },
+  "name": "Học giỏi Tiếng Anh toàn diện: Nghe, Nói, Đọc, Viết",
+  "author": "Bùi Đức Tiến",
+  "description": "Rèn luyện 4 kĩ năng, kèm theo giảng giải chi tiết về cấu trúc đề thi, nhưng lưu ý khi làm bài sẽ giúp bạn tự tin đạt 5 - 5,5 điểm IELTS.",
+  "imageUrl": "http://localhost:3000/uploads/1591771504535-hoc-gioi-tieng-anh-toan-dien_m_1555572380.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee0818d33a2204b3420a3bf"
+  },
+  "name": "Tiếng Anh giao tiếp trẻ em từ 04-12 tuổi",
+  "author": "Hương Elena",
+  "description": "Rèn luyện 4 kĩ năng, kèm theo giảng giải chi tiết về cấu trúc đề thi, nhưng lưu ý khi làm bài sẽ giúp bạn tự tin đạt 5 - 5,5 điểm IELTS.",
+  "imageUrl": "http://localhost:3000/uploads/1591771533241-tieng-anh-giao_tiep-tre-em-tu-4-12-tuoi_m_1555578465.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee081a333a2204b3420a3c0"
+  },
+  "name": "Phát âm chuẩn tiếng anh ngay lập tức",
+  "author": "Bùi Đức Tiến",
+  "description": "Rèn luyện 4 kĩ năng, kèm theo giảng giải chi tiết về cấu trúc đề thi, nhưng lưu ý khi làm bài sẽ giúp bạn tự tin đạt 5 - 5,5 điểm IELTS.",
+  "imageUrl": "http://localhost:3000/uploads/1591771555154-phat-am-va-nghe-noi-tieng-anh-can-ban_m_1557994810.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee081bc33a2204b3420a3c1"
+  },
+  "name": "Luyện thi IELTS online: listening, speaking, reading, writing",
+  "author": "Bùi Đức Tiến",
+  "description": "Rèn luyện 4 kĩ năng, kèm theo giảng giải chi tiết về cấu trúc đề thi, nhưng lưu ý khi làm bài sẽ giúp bạn tự tin đạt 5 - 5,5 điểm IELTS.",
+  "imageUrl": "http://localhost:3000/uploads/1591771580987-khoa-hoc-phat-am-tieng-anh-giong-my-danh-cho-nguoi-viet_m_1555656388.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee081e133a2204b3420a3c2"
+  },
+  "name": "Luyện phát âm và nghe nói tiếng Anh cơ bản",
+  "author": "Dang HNN",
+  "description": "Rèn luyện 4 kĩ năng, kèm theo giảng giải chi tiết về cấu trúc đề thi, nhưng lưu ý khi làm bài sẽ giúp bạn tự tin đạt 5 - 5,5 điểm IELTS.",
+  "imageUrl": "http://localhost:3000/uploads/1591771617482-phat-am-va-nghe-noi-tieng-anh-can-ban_m_1557994810.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee081f833a2204b3420a3c3"
+  },
+  "name": "Lộ trình chinh phục tiếng anh toàn diện cho người mất gốc",
+  "author": "Ngọc Ánh",
+  "description": "Rèn luyện 4 kĩ năng, kèm theo giảng giải chi tiết về cấu trúc đề thi, nhưng lưu ý khi làm bài sẽ giúp bạn tự tin đạt 5 - 5,5 điểm IELTS.",
+  "imageUrl": "http://localhost:3000/uploads/1591771640588-lo-trinh-chinh-phuc-tieng-anh-toan-dien_m_1561426781.jpg",
+  "__v": 0
+}]
