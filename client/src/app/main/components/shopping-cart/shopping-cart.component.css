@@ -1,0 +1,9 @@
+.u-box-cart2 {
+    border: 1px solid #eee;
+    padding: 10px;
+    margin: 20px 0;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    background: #fff;
+}

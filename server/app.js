@@ -12,7 +12,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 /*const auth = require('./routes/index.router');*/
 
-const product = require('./routes/product.router');
+/*const product = require('./routes/product.router');*/
 const rtsIndex = require('./routes/index.router');
 const adminRoute = require('./routes/admin.router');
 var User = require('mongoose').model('User');
@@ -123,8 +123,8 @@ router.route('/auth/me')
 
 app.use('/api/v1', router);
 /*app.use('/api/resetpassword', rtsIndex);*/
-app.use('/product', product);
-
+/*app.use('/product', product);
+*/
 
 // start server
 app.listen(process.env.PORT, () => console.log(`Server started at port : ${process.env.PORT}`));

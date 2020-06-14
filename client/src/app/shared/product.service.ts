@@ -11,6 +11,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
   getProducts() {
-  	return this.http.get(`${environment.apiBaseUrl}/product/listproducts`);
+  	return this.http.get(`${environment.apiBaseUrl}/products`);
+  }
+
+  getProductById() {
+  	return this.http.get(`${environment.apiBaseUrl}/products/:id`);
   }
 }
+  

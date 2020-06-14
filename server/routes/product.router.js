@@ -1,11 +1,11 @@
-const express = require('express');
+/*const express = require('express');
 const router = express.Router();
 const Product = require('../models/product.model');
 const fs = require('fs')
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 const path = require('path');
-
+const baseURLImage = 'http://localhost:3000/uploads';
 router.get('/listproducts', async (req, res, next) => {
 	try {
 		let listProducts = await Product.find({});
@@ -15,57 +15,88 @@ router.get('/listproducts', async (req, res, next) => {
 	}
 })
 
-/*router.get('/category', (req, res) => {
-  Category.find().then((category) => {
-    res.send({
-      category
-    });
-  }, (e) => {
-    res.status(400).send(e);
-  });
-});*/
 
-/*// SET STORAGE
+// SET STORAGE
 var storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-	  cb(null, 'uploads')
+	destination: (req, file, cb) => {
+		cb(null, 'uploads')
 	},
-	filename: function (req, file, cb) {
-	  cb(null, file.fieldname + '-' + Date.now())
+	filename: (req, file, cb) => {
+		cb(null, Date.now()+'-'+file.originalname) 
 	}
-  })
-   
-var upload = multer({ storage: storage })*/
+})
 
-router.post('/create'/*, upload.single('imageProduct')*/, async (req, res) => {
+var upload = multer({storage: storage})
+
+router.post('/create', upload.single('imageProduct'), async (req, res) => {
 	try {
-		const { name, author, description, price, imageUrl } = req.body;
-		/*var img = fs.readFileSync(req.file.path);
-		var encode_image = img.toString('base64');*/
-		// Define a JSONobject for the image attributes for saving to database
+		console.log(req.file)
+
+		const { name, author, description, price } = req.body;
+
+		const imgProductUrl = `${baseURLImage}/${req.file.filename}`;
 		
-		/*var finalImg = {
-			contentType: req.file.mimetype,
-			image:  new Buffer(encode_image, 'base64')
-		};*/
 		let product =  new Product({
 			name: name,
 			author: author,
 			description: description,
 			price: price,
-			imageUrl: imageUrl
+			imageUrl: imgProductUrl
 		});
 		await product.save();
-		/*var path = req.file.path;
-		res.send(path)*/
+		res.send(product)
+		
+		// console.log(path.join(path.normalize(`${__dirname}/../uploads/${req.file.filename}`).replace('\\', '/')))
+		// res.sendFile(path.join(path.normalize(`${__dirname}/../uploads/${req.file.filename}`).replace('\\', '/')));
 	} catch(e) {
 		console.log(e)
 	}
 })
 
-router.put('/:productId', async (req, res) => {
-	const { name, author, description, price, imageUrl } = req.body;
-	
+// router.get('/:productID', (req, res, next) => {
+// 	fs.readFile('/path/to/an/image/directory/' + pic, function (err, content) {
+//         if (err) {
+//             res.writeHead(400, {'Content-type':'text/html'})
+//             console.log(err);
+//             res.end("No such image");    
+//         } else {
+//             //specify the content type in the response will be an image
+//             res.writeHead(200,{'Content-type':'image/jpg'});
+//             res.end(content);
+//         }
+//     });
+// })
+
+router.put('/:productId', upload.single('imageProduct') ,async (req, res) => {
+	try {
+		let product = await Product.findById(req.params.productId);
+		if(!product) {
+			res.send("Can't find Product");
+		} else {
+			const { name, author, description, price } = req.body;
+			product.name = name;
+			product.author = author;
+			product.description = description;
+			product.price = price;
+			if(req.file) {
+				let imgProductUrl = `${baseURLImage}/${req.file.filename}`;
+				product.imageUrl = imgProductUrl;
+			} 
+			await product.save();
+			res.send(product);
+		}
+	} catch(e) {
+		console.log(e)
+	}	
+})
+
+router.delete('/:productId', async (req, res) => {
+	try {
+		let product = await Product.findByIdAndDelete(req.params.productId);
+		res.send({ message: "Delete Success!"})
+	} catch(e) {
+		res.send({ message: e})
+	}
 })
 
 
@@ -79,4 +110,4 @@ router.get('/:productId', async (req, res) => {
 	}
 })
 
-module.exports = router;
+module.exports = router;*/

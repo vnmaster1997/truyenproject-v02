@@ -30,16 +30,18 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   loadCartItems() {
-    this.cartService.getCartItems().subscribe((items: CartItem[]) => {
-      this.cartItems = items;
+    this.cartService.getCartItems().subscribe((items: any) => {
+      this.cartItems = items.data;
       this.calcCartTotal();
     })
   }
 
+
+
   calcCartTotal() {
     this.cartTotal = 0
     this.cartItems.forEach(item => {
-      this.cartTotal += (item.qty * item.price)
+      this.cartTotal += (item.product.price)
     })
   }
 
