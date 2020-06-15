@@ -19,6 +19,7 @@ public currentUser : any = {};
   constructor(private userService: UserService, /*private userfbService: UserfbService,*/ private router: Router) { }
 
   ngOnInit() {
+    if(this.userService.getToken() !== '') {
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res['user'];
@@ -28,6 +29,7 @@ public currentUser : any = {};
         
       }
     );
+  }
     /*this.userfbService.getCurrentUser().then(profile => this.currentUser = profile)
         .catch(() => this.currentUser = {});*/
 }

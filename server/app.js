@@ -15,7 +15,10 @@ const cookieParser = require('cookie-parser');
 
 const product = require('./routes/product.router');
 const rtsIndex = require('./routes/index.router');
+const adminRoute = require('./routes/admin.router');
 var User = require('mongoose').model('User');
+
+const webMiddleware = require("./middlewares/web.middleware");
 
 var app = express();
 
@@ -27,11 +30,16 @@ var corsOption = {
 };
 DBConnect();
 // middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors(corsOption));
+app.use(cookieParser('my-secret'));
 app.use(passport.initialize());
+app.use(webMiddleware);
 app.use('/api', rtsIndex);
 app.use('/uploads', express.static(path.join(path.normalize(`${__dirname}/uploads`).replace('\\', '/'))));
+app.use('/api/admin', adminRoute);
+
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
@@ -52,7 +60,7 @@ var createToken = function(auth) {
     id: auth.id
   }, 'my-secret',
   {
-    expiresIn: 60 * 120
+    expiresIn: "10d"
   });
 };
 

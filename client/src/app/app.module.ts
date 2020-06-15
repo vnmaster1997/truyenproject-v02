@@ -50,6 +50,7 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './admin/layouts/admin-layout/admin-layout.component';
+import { AdminProductEditComponent } from './admin/admin-product-edit/admin-product-edit.component';
  
  /*export function getAuthHttp(http: Http) {
   return new AuthHttp(new AuthConfig({
@@ -76,7 +77,7 @@ import { AdminLayoutComponent } from './admin/layouts/admin-layout/admin-layout.
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    HomeLayoutComponent
+    HomeLayoutComponent,
     /*SignUpComponent,
     LogInComponent*/
   ],

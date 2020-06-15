@@ -24,11 +24,11 @@ export class ProductCardComponent implements OnInit {
     	})
   	}
 
-	handleMoveFromCart(){
+	/*handleMoveFromCart(){
 		this.cartService.RemoveProductFromCart(this.productCard).subscribe(() => {
       	this.msg.sendMsg(this.productCard)
       	this.addedToCard = false;
     	})
-	}
+	}*/
 
 }

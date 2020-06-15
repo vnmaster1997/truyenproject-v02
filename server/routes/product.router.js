@@ -15,15 +15,6 @@ router.get('/listproducts', async (req, res, next) => {
 	}
 })
 
-/*router.get('/category', (req, res) => {
-  Category.find().then((category) => {
-    res.send({
-      category
-    });
-  }, (e) => {
-    res.status(400).send(e);
-  });
-});*/
 
 // SET STORAGE
 var storage = multer.diskStorage({
